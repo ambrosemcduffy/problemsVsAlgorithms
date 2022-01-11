@@ -54,8 +54,13 @@ def test_function(test_case):
         print("Fail")
 
 
-arrangedDigits1 = rearrange_digits(array1)
-test_function([array1, arrangedDigits1])
+def test_function(test_case):
+    output = rearrange_digits(test_case[0])
+    solution = test_case[1]
+    if sum(output) == sum(solution):
+        print("Pass")
+    else:
+        print("Fail")
 
-arrangedDigits2 = rearrange_digits(array2)
-test_function([array2, arrangedDigits2])
+test_function([[1, 2, 3, 4, 5], [542, 31]])
+test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]

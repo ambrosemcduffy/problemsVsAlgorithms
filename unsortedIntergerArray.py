@@ -7,18 +7,24 @@ Created on Sun Dec 19 19:04:07 2021
 
 def get_min_max(array):
     max_ = 0
-    min_ = 0
-    for index in range(len(array)):
+    min_ = 10
+    
+    for index in range(1, len(array)):
         current_element = array[index]
         previous_element = array[index-1]
-        print(current_element)
-
+        
         if current_element > previous_element:
-            max_ = current_element
+            inmax = current_element
+            if inmax > max_:
+                max_ = inmax
         if current_element < previous_element:
-            min_ = current_element
+            inmin = current_element
+        else:
+            inmin = previous_element
+        
+        if inmin < min_:
+            min_ = inmin
     return (min_, max_)
-
 
 
 import random

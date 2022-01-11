@@ -1,4 +1,4 @@
-def sqrt(target, epsilon):
+def sqrt(target, epsilon=0.01):
     """ Finds the interger of the int target
     Args:
         target (int): number to be squared
@@ -6,7 +6,8 @@ def sqrt(target, epsilon):
     Returns:
         (float): square root
     """
-
+    if target == 1:
+        return 1
     if type(target) != int and type(epsilon) != float:
         return -1
 
@@ -21,7 +22,11 @@ def sqrt(target, epsilon):
             end = answer
         answer = (start + end)/2.0
 
-    return answer
+    return int(answer)
 
 
-print(sqrt(24, 0.01))
+print ("Pass" if  (3 == sqrt(9)) else "Fail")
+print ("Pass" if  (0 == sqrt(0)) else "Fail")
+print ("Pass" if  (4 == sqrt(16)) else "Fail")
+print ("Pass" if  (1 == sqrt(1)) else "Fail")
+print ("Pass" if  (5 == sqrt(27)) else "Fail")
