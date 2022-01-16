@@ -1,36 +1,65 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 19 19:04:07 2021
+import random
 
-@author: ambro
-"""
 
 def get_min_max(array):
-    max_ = 0
-    min_ = 0
+    """ Obtains min and max of an array
+    Args:
+        array (list): list of elements
+    Returns:
+        tuple: min and max elements
+    """
+    max_element = None
+    min_element = None
+    
+    if array == None:
+        return None
+    if type(array) == int or type(array) == float:
+        return -1
     
     for index in range(1, len(array)):
         current_element = array[index]
         previous_element = array[index-1]
-        if current_element > previous_element:
-            inmax = current_element
-            if inmax > max_:
-                max_ = inmax
-                min_ = inmax
-        if current_element < previous_element:
+        
+        if previous_element > current_element:
+            inmax = previous_element
             inmin = current_element
         else:
+            inmax = current_element
             inmin = previous_element
         
-        if inmin < min_:
-            min_ = inmin
-    print(min_, max_)
-    return (min_, max_)
+        if max_element is None:
+            max_element = inmax
+        
+        if min_element is None:
+            min_element = inmin
+            
+        if inmin < min_element:
+            min_element = inmin
+        if inmax > max_element:
+            max_element = inmax
+    return (min_element, max_element)
 
 
-import random
-
-l = [i for i in range(60, 500)]  # a list containing 0 - 9
+# Test Cases
+l = [i for i in range(0, 10)]  # a list containing 0 - 9
 random.shuffle(l)
+print ("Pass" if ((0, 9) == get_min_max(l)) else "Fail")
 
-print ("Pass" if ((60, 499) == get_min_max(l)) else "Fail")
+l = [i for i in range(500, 867)]  # a list containing 0 - 9
+random.shuffle(l)
+print ("Pass" if ((500, 866) == get_min_max(l)) else "Fail")
+
+
+l = [i for i in range(2, 365)]  # a list containing 0 - 9
+random.shuffle(l)
+print ("Pass" if ((2, 364) == get_min_max(l)) else "Fail")
+
+
+# Edge Cases
+
+# Will return None
+print(get_min_max(None))
+
+# Will return -1
+print(get_min_max(3))
+
