@@ -1,7 +1,6 @@
 nums = [4, 5, 6, 7, 0, 1, 2]
 
-
-def binarySearch(arr, target, start, end):
+def rotated_array_search(arr, target):
     """ Finds interger in rotated array
     Args:
         arr (list): rotated array
@@ -9,6 +8,8 @@ def binarySearch(arr, target, start, end):
     Returns:
         (int): index array
     """
+    start = 0
+    end = len(arr)-1
 
     while (start <= end):
         middle = (start + end)//2
@@ -51,14 +52,22 @@ def rotated_array_search(input_list, number):
         return binarySearch(input_list, number, mid + 1, numberOfElements - 1)
     else:
         return -1
+middle = len(nums)//2
 
+left = nums[:middle+1]
+right = nums[middle+1:]
 
+print(rotated_array_search(left, 5))
+
+print(left)
+print(right)
+
+"""
 def linear_search(input_list, number):
     for index, element in enumerate(input_list):
         if element == number:
             return index
     return -1
-
 
 def test_function(test_case):
     input_list = test_case[0]
@@ -86,3 +95,4 @@ print(rotated_array_search("", ""))
 
 # Will return None
 print(rotated_array_search([], []))
+"""
