@@ -22,7 +22,6 @@ class Trie():
         current_node = self.root
 
         for char in prefix:
-            print(prefix)
             if char in current_node.children:
                 current_node = current_node.children[char]
             else:
@@ -30,7 +29,12 @@ class Trie():
         return current_node
 
     def getSuffix(self, prefix=""):
+        if prefix is None:
+            return None
+
         prefix_node = self.find(prefix)
+        if not prefix_node:
+            return -1
         suffix_list = []
 
         def findSuffix(prefix_node, suffix=""):
@@ -57,5 +61,24 @@ for word in wordList:
     trie.add(word)
 
 
-suffix = trie.getSuffix("tri")
+# Edge cases
+prefix = "tri"
+suffix = trie.getSuffix(prefix)
+print(suffix)
 
+prefix = "ant"
+suffix = trie.getSuffix(prefix)
+print(suffix)
+
+prefix = "fu"
+suffix = trie.getSuffix(prefix)
+print(suffix)
+
+
+# Test cases
+
+# Returns -1
+print(trie.getSuffix("cat"))
+
+# Returns None
+print(trie.getSuffix(None))
